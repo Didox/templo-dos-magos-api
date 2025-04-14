@@ -3,6 +3,25 @@
   "compilerOptions": {
     "rootDir": "./",
     "outDir": "./build",
-    "moduleResolution": "node16"
+    "moduleResolution": "node16",
+    "baseUrl": ".",
+    "paths": {
+      "#models/*": ["./app/models/*"],
+      "#controllers/*": ["./app/controllers/*"],
+      "#exceptions/*": ["./app/exceptions/*"],
+      "#mails/*": ["./app/mails/*"],
+      "#services/*": ["./app/services/*"],
+      "#listeners/*": ["./app/listeners/*"],
+      "#events/*": ["./app/events/*"],
+      "#middleware/*": ["./app/middleware/*"],
+      "#validators/*": ["./app/validators/*"],
+      "#providers/*": ["./providers/*"],
+      "#policies/*": ["./app/policies/*"],
+      "#abilities/*": ["./app/abilities/*"],
+      "#database/*": ["./database/*"],
+      "#start/*": ["./start/*"],
+      "#tests/*": ["./tests/*"],
+      "#config/*": ["./config/*"]
+    }
   }
 }
