@@ -6,13 +6,21 @@ export default class ProdutosController {
     try {
       const page = request.input('page', 1)
       const limit = request.input('limit', 10)
+      const categoriaId = request.input('categoria')
+
       if (limit > 30) {
         return response.status(400).json({
           message: 'O limite máximo de produtos por página é 30',
         })
       }
 
-      const produtos = await Produto.query().preload('categoria').paginate(page, limit)
+      const query = Produto.query().preload('categoria')
+
+      if (categoriaId) {
+        query.where('categoria_id', categoriaId)
+      }
+
+      const produtos = await query.paginate(page, limit)
 
       return response.json(produtos)
     } catch (error) {
