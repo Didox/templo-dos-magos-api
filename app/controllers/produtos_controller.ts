@@ -7,6 +7,7 @@ export default class ProdutosController {
       const page = request.input('page', 1)
       const limit = request.input('limit', 10)
       const categoriaId = request.input('categoria')
+      const nome = request.input('nome')
 
       if (limit > 30) {
         return response.status(400).json({
@@ -18,6 +19,10 @@ export default class ProdutosController {
 
       if (categoriaId) {
         query.where('categoria_id', categoriaId)
+      }
+
+      if (nome) {
+        query.where('nome', 'like', `%${nome}%`)
       }
 
       const produtos = await query.paginate(page, limit)
