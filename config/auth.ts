@@ -1,10 +1,15 @@
 // config/auth.ts
 import { defineConfig } from '@adonisjs/auth'
-import { placeholderGuard } from '../app/guards/placeholder_guard.js'
+import { tokensGuard, tokensUserProvider } from '@adonisjs/auth/access_tokens'
 
 export default defineConfig({
-  default: 'placeholder',
+  default: 'access_tokens',
   guards: {
-    placeholder: () => placeholderGuard(),
+    access_tokens: tokensGuard({
+      provider: tokensUserProvider({
+        tokens: 'accessTokens',
+        model: () => import('#models/usuario'),
+      }),
+    }),
   },
 })

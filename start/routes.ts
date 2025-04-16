@@ -31,3 +31,9 @@ router.group(() => {
     router.post('/', '#controllers/pedidos_controller.create')
     router.put('/:id', '#controllers/pedidos_controller.update')
 }).prefix('/pedidos')
+
+// Rotas de autenticação
+router.group(() => {
+  router.post('/login', '#controllers/auth_controller.login')
+  router.get('/me', '#controllers/auth_controller.me')
+}).prefix('/auth')
