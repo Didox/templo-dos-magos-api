@@ -1,28 +1,45 @@
 import Usuario from '#models/usuario'
 import hash from '@adonisjs/core/services/hash'
-import { validator } from '@adonisjs/validator'
-import { createValidator } from '@adonisjs/validator/validator'
-import { UsuarioDTO, UpdateUsuarioDTO, UpdateSenhaDTO } from '#dtos/usuario.dto'
+import { UsuarioDTO, UpdateUsuarioDTO, UpdateSenhaDTO } from '#dtos/usuario_dto.js'
+import vine from '@vinejs/vine'
 
-const usuarioSchema = createValidator.object({
-  nome: createValidator.string().trim().min(2).max(100).required(),
-  sobrenome: createValidator.string().trim().min(2).max(100).required(),
-  documento: createValidator.string().trim().min(11).max(14).required(),
-  cep: createValidator.string().trim().min(8).max(9).required(),
-  endereco: createValidator.string().trim().min(5).max(200).required(),
-  numero: createValidator.string().trim().max(100).required(),
-  complemento: createValidator.string().trim().max(255).optional(),
-  bairro: createValidator.string().trim().min(2).max(200).required(),
-  cidade: createValidator.string().trim().min(2).max(100).required(),
-  estado: createValidator.string().trim().length(2).required(),
-  email: createValidator.string().trim().email().required(),
-  senha: createValidator.string().trim().min(6).required(),
+const usuarioSchema = vine.object({
+  nome: vine.string().trim(),
+  sobrenome: vine.string().trim(),
+  documento: vine.string().trim(),
+  cep: vine.string().trim(),
+  endereco: vine.string().trim(),
+  numero: vine.string().trim(),
+  complemento: vine.string().trim().optional(),
+  bairro: vine.string().trim(),
+  cidade: vine.string().trim(),
+  estado: vine.string().trim(),
+  email: vine.string().trim().email(),
+  senha: vine.string(),
+})
+
+const updateUsuarioSchema = vine.object({
+  nome: vine.string().trim().optional(),
+  sobrenome: vine.string().trim().optional(),
+  documento: vine.string().trim().optional(),
+  cep: vine.string().trim().optional(),
+  endereco: vine.string().trim().optional(),
+  numero: vine.string().trim().optional(),
+  complemento: vine.string().trim().optional(),
+  bairro: vine.string().trim().optional(),
+  cidade: vine.string().trim().optional(),
+  estado: vine.string().trim().optional(),
+  email: vine.string().trim().email().optional(),
+})
+
+const updateSenhaSchema = vine.object({
+  senha: vine.string(),
 })
 
 export class UsuarioService {
   async create(dados: UsuarioDTO) {
     // Valida os dados
-    const dadosValidados = await validator.validate({
+    const dadosValidados = await vine.validate({
       schema: usuarioSchema,
       data: dados,
     })
@@ -49,22 +66,8 @@ export class UsuarioService {
     const usuario = await Usuario.findOrFail(id)
 
     // Valida os dados parcialmente (exclui campos não enviados)
-    const schema = createValidator.object({
-      nome: createValidator.string().trim().min(2).max(100).optional(),
-      sobrenome: createValidator.string().trim().min(2).max(100).optional(),
-      documento: createValidator.string().trim().min(11).max(14).optional(),
-      cep: createValidator.string().trim().min(8).max(9).optional(),
-      endereco: createValidator.string().trim().min(5).max(200).optional(),
-      numero: createValidator.string().trim().max(100).optional(),
-      complemento: createValidator.string().trim().max(255).optional(),
-      bairro: createValidator.string().trim().min(2).max(200).optional(),
-      cidade: createValidator.string().trim().min(2).max(100).optional(),
-      estado: createValidator.string().trim().length(2).optional(),
-      email: createValidator.string().trim().email().optional(),
-    })
-
-    const dadosValidados = await validator.validate({
-      schema,
+    const dadosValidados = await vine.validate({
+      schema: updateUsuarioSchema,
       data: dados,
     })
 
@@ -92,21 +95,17 @@ export class UsuarioService {
     return usuario
   }
 
-  async updateSenha(id: number, { senha }: UpdateSenhaDTO) {
+  async updateSenha(id: number, dados: UpdateSenhaDTO) {
     const usuario = await Usuario.findOrFail(id)
 
     // Valida a nova senha
-    const schema = createValidator.object({
-      senha: createValidator.string().trim().min(6).required(),
-    })
-
-    await validator.validate({
-      schema,
-      data: { senha },
+    const dadosValidados = await vine.validate({
+      schema: updateSenhaSchema,
+      data: dados,
     })
 
     // Criptografa e atualiza a senha
-    usuario.senha = await hash.make(senha)
+    usuario.senha = await hash.make(dadosValidados.senha)
     await usuario.save()
     return usuario
   }

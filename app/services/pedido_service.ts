@@ -1,43 +1,31 @@
-import { validator } from '@adonisjs/validator'
-import { createValidator } from '@adonisjs/validator/validator'
-import { PedidoDTO, UpdatePedidoDTO, PedidoProdutoDTO } from '#dtos/pedido.dto'
+import vine from '@vinejs/vine'
+import { PedidoDTO, UpdatePedidoDTO, PedidoProdutoDTO } from '#dtos/pedido_dto.js'
 import Pedido from '#models/pedido'
 import db from '@adonisjs/lucid/services/db'
 
-const pedidoSchema = createValidator.object({
-  usuario_id: createValidator.number().required(),
-  produtos: createValidator
-    .array()
-    .members(
-      createValidator.object({
-        produto_id: createValidator.number().required(),
-        quantidade: createValidator.number().min(1).required(),
-        preco_unitario: createValidator.number().min(0).required(),
+const pedidoSchema = vine.object({
+  usuario_id: vine.number(),
+  produtos: vine
+    .array(
+      vine.object({
+        produto_id: vine.number(),
+        quantidade: vine.number().min(1),
+        preco_unitario: vine.number().min(0),
       })
     )
-    .minLength(1)
-    .required(),
-  forma_pagamento: createValidator
-    .string()
-    .trim()
-    .maxLength(50)
-    .oneOf(['cartao', 'pix', 'boleto'])
-    .required(),
-  observacoes: createValidator.string().trim().maxLength(500).optional(),
+    .minLength(1),
+  forma_pagamento: vine.string().trim().maxLength(50).in(['cartao', 'pix', 'boleto']),
+  observacoes: vine.string().trim().maxLength(500).optional(),
 })
 
-const updatePedidoSchema = createValidator.object({
-  status: createValidator
-    .string()
-    .trim()
-    .oneOf(['pendente', 'aprovado', 'cancelado', 'entregue'])
-    .required(),
+const updatePedidoSchema = vine.object({
+  status: vine.string().trim().in(['pendente', 'aprovado', 'cancelado', 'entregue']),
 })
 
 export class PedidoService {
   async create(dados: PedidoDTO) {
     // Valida os dados
-    const dadosValidados = await validator.validate({
+    const dadosValidados = await vine.validate({
       schema: pedidoSchema,
       data: dados,
     })
@@ -111,7 +99,7 @@ export class PedidoService {
 
   async update(id: number, dados: UpdatePedidoDTO) {
     // Valida os dados
-    const dadosValidados = await validator.validate({
+    const dadosValidados = await vine.validate({
       schema: updatePedidoSchema,
       data: dados,
     })
