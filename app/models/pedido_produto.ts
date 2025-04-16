@@ -38,4 +38,4 @@ export default class PedidoProduto extends BaseModel {
     foreignKey: 'produto_id',
   })
   declare produto: BelongsTo<typeof Produto>
-} 
+}

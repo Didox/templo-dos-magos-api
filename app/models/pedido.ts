@@ -36,4 +36,4 @@ export default class Pedido extends BaseModel {
 
   @hasMany(() => PedidoProduto)
   declare produtos: HasMany<typeof PedidoProduto>
-} 
+}

@@ -61,7 +61,7 @@ export default class UsuariosController {
         'bairro',
         'cidade',
         'estado',
-        'email'
+        'email',
       ])
 
       const usuario = await this.usuarioService.update(params.id, dados)

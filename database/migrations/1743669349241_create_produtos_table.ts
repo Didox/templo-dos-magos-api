@@ -10,7 +10,8 @@ export default class extends BaseSchema {
       table.decimal('preco', 10, 2).notNullable()
       table.text('descricao').notNullable()
       table.string('url_imagem', 255).notNullable()
-      table.integer('categoria_id')
+      table
+        .integer('categoria_id')
         .unsigned()
         .references('id')
         .inTable('categorias')
