@@ -1,4 +1,4 @@
-export type UsuarioDTO = {
+export interface UsuarioDTO {
   nome: string
   sobrenome: string
   documento: string
@@ -13,8 +13,19 @@ export type UsuarioDTO = {
   senha: string
 }
 
-export type UpdateUsuarioDTO = Partial<Omit<UsuarioDTO, 'senha'>>
+export interface UpdateUsuarioDTO {
+  nome?: string
+  sobrenome?: string
+  documento?: string
+  cep?: string
+  endereco?: string
+  numero?: string
+  complemento?: string
+  bairro?: string
+  cidade?: string
+  estado?: string
+}
 
-export type UpdateSenhaDTO = {
+export interface UpdateSenhaDTO {
   senha: string
 }

@@ -21,7 +21,8 @@
       "#database/*": ["./database/*"],
       "#start/*": ["./start/*"],
       "#tests/*": ["./tests/*"],
-      "#config/*": ["./config/*"]
+      "#config/*": ["./config/*"],
+      "#dtos/*": ["./app/dtos/*"]
     }
   }
 }
