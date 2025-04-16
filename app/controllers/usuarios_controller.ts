@@ -7,7 +7,15 @@ export default class UsuariosController {
 
   async index({ response }: HttpContext) {
     const usuarios = await Usuario.all()
-    return response.json(usuarios)
+    return response.json(
+      usuarios.map((usuario) =>
+        usuario.serialize({
+          fields: {
+            omit: ['senha'],
+          },
+        })
+      )
+    )
   }
 
   async show({ params, response }: HttpContext) {

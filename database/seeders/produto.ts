@@ -4,7 +4,10 @@ import Categoria from '#models/categoria'
 
 export default class extends BaseSeeder {
   async run() {
-    await Produto.query().delete()
+    const produtosExistentes = await Produto.query().count('* as total')
+    if (produtosExistentes[0].$attributes.total > 0) {
+      return
+    }
 
     // Busca todas as categorias disponíveis
     const categorias = await Categoria.all()
