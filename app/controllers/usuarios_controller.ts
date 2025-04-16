@@ -1,7 +1,10 @@
 import { HttpContext } from '@adonisjs/core/http'
 import Usuario from '#models/usuario'
+import { UsuarioService } from '#services/usuario_service'
 
 export default class UsuariosController {
+  constructor(protected usuarioService = new UsuarioService()) {}
+
   async index({ response }: HttpContext) {
     const usuarios = await Usuario.all()
     return response.json(usuarios)
@@ -19,23 +22,23 @@ export default class UsuariosController {
   }
 
   async create({ request, response }: HttpContext) {
-    const dados = request.only([
-      'nome',
-      'sobrenome',
-      'documento',
-      'cep',
-      'endereco',
-      'numero',
-      'complemento',
-      'bairro',
-      'cidade',
-      'estado',
-      'email',
-      'senha',
-    ])
-
     try {
-      const usuario = await Usuario.create(dados)
+      const dados = request.only([
+        'nome',
+        'sobrenome',
+        'documento',
+        'cep',
+        'endereco',
+        'numero',
+        'complemento',
+        'bairro',
+        'cidade',
+        'estado',
+        'email',
+        'senha',
+      ])
+
+      const usuario = await this.usuarioService.create(dados)
       return response.status(201).json(usuario)
     } catch (error) {
       return response.status(400).json({
@@ -47,7 +50,6 @@ export default class UsuariosController {
 
   async update({ params, request, response }: HttpContext) {
     try {
-      const usuario = await Usuario.findOrFail(params.id)
       const dados = request.only([
         'nome',
         'sobrenome',
@@ -62,7 +64,19 @@ export default class UsuariosController {
         'email'
       ])
 
-      await usuario.merge(dados).save()
+      const usuario = await this.usuarioService.update(params.id, dados)
+      return response.json(usuario)
+    } catch (error) {
+      return response.status(404).json({
+        message: 'Usuário não encontrado',
+      })
+    }
+  }
+
+  async updateSenha({ params, request, response }: HttpContext) {
+    try {
+      const { senha } = request.only(['senha'])
+      const usuario = await this.usuarioService.updateSenha(params.id, { senha })
       return response.json(usuario)
     } catch (error) {
       return response.status(404).json({

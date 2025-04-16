@@ -21,6 +21,7 @@ router.group(() => {
     router.get('/:id', '#controllers/usuarios_controller.show')
     router.post('/', '#controllers/usuarios_controller.create')
     router.put('/:id', '#controllers/usuarios_controller.update')
+    router.patch('/:id/senha', '#controllers/usuarios_controller.updateSenha')
 }).prefix('/usuarios')
 
 // Rotas de pedidos
