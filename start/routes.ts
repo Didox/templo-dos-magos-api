@@ -2,34 +2,31 @@ import router from '@adonisjs/core/services/router'
 import AutoSwagger from 'adonis-autoswagger'
 import swagger from '#config/swagger'
 
+// Swagger routes
 router.get('/swagger', async () => {
   return AutoSwagger.default.docs(router.toJSON(), swagger)
 })
-
 router.get('/docs', async () => {
   return AutoSwagger.default.ui('/swagger', swagger)
 })
 
-// Rota Home
-router.get('/', '#controllers/home_controller.index')
-
-// Rotas de produtos
+// Produtos
 router
   .group(() => {
     router.get('/', '#controllers/produtos_controller.index').as('produtos.index')
     router.get('/:id', '#controllers/produtos_controller.show')
   })
-  .prefix('/produtos')
+  .prefix('/api/produtos')
 
-// Rotas de categorias
+// Categorias
 router
   .group(() => {
     router.get('/', '#controllers/categorias_controller.index').as('categorias.index')
     router.get('/:id', '#controllers/categorias_controller.show')
   })
-  .prefix('/categorias')
+  .prefix('/api/categorias')
 
-// Rotas de usuários
+// Usuários
 router
   .group(() => {
     router.get('/', '#controllers/usuarios_controller.index').as('usuarios.index')
@@ -38,9 +35,9 @@ router
     router.put('/:id', '#controllers/usuarios_controller.update')
     router.patch('/:id/senha', '#controllers/usuarios_controller.updateSenha')
   })
-  .prefix('/usuarios')
+  .prefix('/api/usuarios')
 
-// Rotas de pedidos
+// Pedidos
 router
   .group(() => {
     router.get('/', '#controllers/pedidos_controller.index').as('pedidos.index')
@@ -48,12 +45,12 @@ router
     router.post('/', '#controllers/pedidos_controller.create')
     router.put('/:id', '#controllers/pedidos_controller.update')
   })
-  .prefix('/pedidos')
+  .prefix('/api/pedidos')
 
-// Rotas de autenticação
+// Auth
 router
   .group(() => {
     router.post('/login', '#controllers/auth_controller.login')
     router.get('/me', '#controllers/auth_controller.me')
   })
-  .prefix('/auth')
+  .prefix('/api/auth')

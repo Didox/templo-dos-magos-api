@@ -25,9 +25,10 @@ export default {
     BearerAuth: {
       type: 'http',
       scheme: 'bearer',
+      bearerFormat: 'JWT',
     },
   },
-  authMiddlewares: ['auth', 'auth:api'],
+  authMiddlewares: ['auth'],
   defaultSecurityScheme: 'BearerAuth',
   persistAuthorization: true,
   showFullPath: false,
