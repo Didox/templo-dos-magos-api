@@ -60,6 +60,7 @@
     "@adonisjs/lucid": "^21.6.0",
     "@adonisjs/validator": "^13.0.2",
     "@vinejs/vine": "^3.0.1",
+    "adonis-autoswagger": "^3.72.0",
     "luxon": "^3.6.1",
     "mysql2": "^3.14.0",
     "reflect-metadata": "^0.2.2"

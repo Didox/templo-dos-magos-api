@@ -1,4 +1,14 @@
 import router from '@adonisjs/core/services/router'
+import AutoSwagger from 'adonis-autoswagger'
+import swagger from '#config/swagger'
+
+router.get('/swagger', async () => {
+  return AutoSwagger.default.docs(router.toJSON(), swagger)
+})
+
+router.get('/docs', async () => {
+  return AutoSwagger.default.ui('/swagger', swagger)
+})
 
 // Rota Home
 router.get('/', '#controllers/home_controller.index')
