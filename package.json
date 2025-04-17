@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "cd build && node bin/server.js",
-    "build": "node ace build && node ace docs:generate && cp swagger.* build/",
+    "build": "node ace build",
     "dev": "node ace serve --hmr",
     "test": "node ace test",
     "lint": "eslint .",
