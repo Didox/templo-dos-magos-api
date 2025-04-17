@@ -4,7 +4,7 @@ import url from 'node:url'
 const basePath = path.dirname(url.fileURLToPath(import.meta.url))
 
 export default {
-  path: path.join(basePath, '..'),
+  path: path.resolve(basePath, '..'),
   info: {
     title: 'Mundo dos Magos API',
     version: '1.0.0',
