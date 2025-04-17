@@ -10,6 +10,9 @@ router.get('/docs', async () => {
   return AutoSwagger.default.ui('/swagger', swagger)
 })
 
+// Rota Home
+router.get('/', '#controllers/home_controller.index')
+
 // Produtos
 router
   .group(() => {
