@@ -1,10 +1,8 @@
 import path from 'node:path'
 import url from 'node:url'
 
-const basePath = path.dirname(url.fileURLToPath(import.meta.url))
-
 export default {
-  path: path.resolve(basePath, '..'),
+  path: path.dirname(url.fileURLToPath(import.meta.url)) + '/../',
   info: {
     title: 'Mundo dos Magos API',
     version: '1.0.0',
@@ -15,6 +13,7 @@ export default {
     },
   },
   tagIndex: 2,
+  productionEnv: 'production',
   snakeCase: true,
   debug: false,
   ignore: ['/swagger', '/docs'],
