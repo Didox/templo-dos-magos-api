@@ -1,8 +1,5 @@
-import path from 'node:path'
-import url from 'node:url'
-
 export default {
-  path: path.dirname(url.fileURLToPath(import.meta.url)) + '/../',
+  path: '',
   info: {
     title: 'Mundo dos Magos API',
     version: '1.0.0',
