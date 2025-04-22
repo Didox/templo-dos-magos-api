@@ -1,7 +1,5 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
-import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
-import type { AccessToken } from '@adonisjs/auth/access_tokens'
 
 export default class Usuario extends BaseModel {
   @column({ isPrimary: true })
@@ -48,8 +46,4 @@ export default class Usuario extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
-
-  static accessTokens = DbAccessTokensProvider.forModel(Usuario)
-
-  declare currentAccessToken?: AccessToken
 }
