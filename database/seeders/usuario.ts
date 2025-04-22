@@ -5,6 +5,7 @@ import hash from '@adonisjs/core/services/hash'
 export default class extends BaseSeeder {
   async run() {
     const senha = await hash.make('1234567890')
+
     const cep = '09931410'
 
     // Busca o endereço pelo CEP

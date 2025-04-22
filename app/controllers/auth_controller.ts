@@ -1,7 +1,9 @@
 import { HttpContext } from '@adonisjs/core/http'
 import { AuthService } from '#services/auth_service'
 import Usuario from '#models/usuario'
+import { inject } from '@adonisjs/core'
 
+@inject()
 export default class AuthController {
   constructor(protected authService: AuthService) {}
 

@@ -1,7 +1,7 @@
 import vine from '@vinejs/vine'
 import hash from '@adonisjs/core/services/hash'
 import { LoginDTO, TokenDTO } from '#dtos/auth_dto.js'
-import Usuario from '#models/usuario.js'
+import Usuario from '#models/usuario'
 
 const loginSchema = vine.object({
   email: vine.string().email().trim(),
@@ -21,6 +21,7 @@ export class AuthService {
     }
 
     const senhaValida = await hash.verify(usuario.senha, payload.senha)
+
     if (!senhaValida) {
       throw new Error('Credenciais inválidas')
     }
