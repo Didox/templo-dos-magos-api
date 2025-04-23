@@ -1,370 +1,370 @@
-openapi: "3.0.0"
+openapi: '3.0.0'
 info:
-  title: "Mundo dos Magos API"
-  version: "1.0.0"
-  description: "Documentação da API Mundo dos Magos"
+  title: 'Mundo dos Magos API'
+  version: '1.0.0'
+  description: 'Documentação da API Mundo dos Magos'
   contact:
-    name: "Torne-se um programador"
-    url: "https://www.torneseumprogramador.com.br/cursos/desafio_node"
+    name: 'Torne-se um programador'
+    url: 'https://www.torneseumprogramador.com.br/cursos/desafio_node'
 components:
   responses:
     Forbidden:
-      description: "Access token is missing or invalid"
+      description: 'Access token is missing or invalid'
     Accepted:
-      description: "The request was accepted"
+      description: 'The request was accepted'
     Created:
-      description: "The resource has been created"
+      description: 'The resource has been created'
     NotFound:
-      description: "The resource has been created"
+      description: 'The resource has been created'
     NotAcceptable:
-      description: "The resource has been created"
+      description: 'The resource has been created'
   securitySchemes:
     BearerAuth:
-      type: "http"
-      scheme: "bearer"
-      bearerFormat: "JWT"
+      type: 'http'
+      scheme: 'bearer'
+      bearerFormat: 'JWT'
     BasicAuth:
-      type: "http"
-      scheme: "basic"
+      type: 'http'
+      scheme: 'basic'
     ApiKeyAuth:
-      type: "apiKey"
-      in: "header"
-      name: "X-API-Key"
+      type: 'apiKey'
+      in: 'header'
+      name: 'X-API-Key'
   schemas:
     Any:
-      description: "Any JSON object not defined as schema"
+      description: 'Any JSON object not defined as schema'
     PaginationMeta:
-      type: "object"
+      type: 'object'
       properties:
         total:
-          type: "number"
+          type: 'number'
           example: 100
           nullable: false
         page:
-          type: "number"
+          type: 'number'
           example: 2
           nullable: false
         perPage:
-          type: "number"
+          type: 'number'
           example: 10
           nullable: false
         currentPage:
-          type: "number"
+          type: 'number'
           example: 3
           nullable: false
         lastPage:
-          type: "number"
+          type: 'number'
           example: 10
           nullable: false
         firstPage:
-          type: "number"
+          type: 'number'
           example: 1
           nullable: false
         lastPageUrl:
-          type: "string"
-          example: "/?page=10"
+          type: 'string'
+          example: '/?page=10'
           nullable: false
         firstPageUrl:
-          type: "string"
-          example: "/?page=1"
+          type: 'string'
+          example: '/?page=1'
           nullable: false
         nextPageUrl:
-          type: "string"
-          example: "/?page=6"
+          type: 'string'
+          example: '/?page=6'
           nullable: false
         previousPageUrl:
-          type: "string"
-          example: "/?page=5"
+          type: 'string'
+          example: '/?page=5'
           nullable: false
     Categoria:
-      type: "object"
+      type: 'object'
       required: []
       properties:
         id:
-          type: "number"
+          type: 'number'
           example: 410
         nome:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         cor:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         slug:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         criado_em:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
+          type: 'string'
+          example: '2021-03-23T16:13:08.489+01:00'
+          format: 'date-time'
         atualizado_em:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
-      description: "Categoria (Model)"
+          type: 'string'
+          example: '2021-03-23T16:13:08.489+01:00'
+          format: 'date-time'
+      description: 'Categoria (Model)'
     Pedido:
-      type: "object"
+      type: 'object'
       required: []
       properties:
         id:
-          type: "number"
+          type: 'number'
           example: 385
         usuario_id:
-          type: "number"
+          type: 'number'
           example: 606
         valor_total:
-          type: "number"
+          type: 'number'
           example: 919
         status:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         forma_pagamento:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         observacoes:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         criado_em:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
+          type: 'string'
+          example: '2021-03-23T16:13:08.489+01:00'
+          format: 'date-time'
         atualizado_em:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
+          type: 'string'
+          example: '2021-03-23T16:13:08.489+01:00'
+          format: 'date-time'
         usuario:
-          $ref: "#/components/schemas/Usuario"
+          $ref: '#/components/schemas/Usuario'
           example: null
         produtos:
-          type: "array"
+          type: 'array'
           items:
-            $ref: "#/components/schemas/PedidoProduto"
+            $ref: '#/components/schemas/PedidoProduto'
             example: null
-      description: "Pedido (Model)"
+      description: 'Pedido (Model)'
     PedidoProduto:
-      type: "object"
+      type: 'object'
       required: []
       properties:
         id:
-          type: "number"
+          type: 'number'
           example: 507
         pedido_id:
-          type: "number"
+          type: 'number'
           example: 391
         produto_id:
-          type: "number"
+          type: 'number'
           example: 531
         quantidade:
-          type: "number"
+          type: 'number'
           example: 358
         preco_unitario:
-          type: "number"
+          type: 'number'
           example: 625
         subtotal:
-          type: "number"
+          type: 'number'
           example: 674
         criado_em:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
+          type: 'string'
+          example: '2021-03-23T16:13:08.489+01:00'
+          format: 'date-time'
         atualizado_em:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
+          type: 'string'
+          example: '2021-03-23T16:13:08.489+01:00'
+          format: 'date-time'
         pedido:
-          $ref: "#/components/schemas/Pedido"
+          $ref: '#/components/schemas/Pedido'
           example: null
         produto:
-          $ref: "#/components/schemas/Produto"
+          $ref: '#/components/schemas/Produto'
           example: null
-      description: "PedidoProduto (Model)"
+      description: 'PedidoProduto (Model)'
     Produto:
-      type: "object"
+      type: 'object'
       required: []
       properties:
         id:
-          type: "number"
+          type: 'number'
           example: 543
         nome:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         preco:
-          type: "number"
+          type: 'number'
           example: 168
         descricao:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         url_imagem:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         categoria_id:
-          type: "number"
+          type: 'number'
           example: 619
         categoria:
-          $ref: "#/components/schemas/Categoria"
+          $ref: '#/components/schemas/Categoria'
           example: null
         criado_em:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
+          type: 'string'
+          example: '2021-03-23T16:13:08.489+01:00'
+          format: 'date-time'
         atualizado_em:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
-      description: "Produto (Model)"
+          type: 'string'
+          example: '2021-03-23T16:13:08.489+01:00'
+          format: 'date-time'
+      description: 'Produto (Model)'
     Usuario:
-      type: "object"
+      type: 'object'
       required: []
       properties:
         id:
-          type: "number"
+          type: 'number'
           example: 277
         nome:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         sobrenome:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         documento:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         cep:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         endereco:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         numero:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         complemento:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         bairro:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         cidade:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         estado:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         email:
-          type: "string"
-          example: "johndoe@example.com"
-          format: "email"
+          type: 'string'
+          example: 'johndoe@example.com'
+          format: 'email'
         senha:
-          type: "string"
-          example: "Lorem Ipsum"
+          type: 'string'
+          example: 'Lorem Ipsum'
         created_at:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
+          type: 'string'
+          example: '2021-03-23T16:13:08.489+01:00'
+          format: 'date-time'
         updated_at:
-          type: "string"
-          example: "2021-03-23T16:13:08.489+01:00"
-          format: "date-time"
+          type: 'string'
+          example: '2021-03-23T16:13:08.489+01:00'
+          format: 'date-time'
         current_access_token:
-          $ref: "#/components/schemas/AccessToken"
+          $ref: '#/components/schemas/AccessToken'
           example: null
-      description: "Usuario (Model)"
+      description: 'Usuario (Model)'
 paths:
   /:
     get:
-      summary: "Get a list of  (index)"
+      summary: 'Get a list of  (index)'
       description: "\n\n _app/controllers/home_controller.ts_ - **index**"
       parameters: []
       tags:
-        - ""
+        - ''
       responses:
         200:
-          description: "OK"
+          description: 'OK'
           content:
             application/json: {}
       security: []
   /api/produtos:
     get:
-      summary: "Get a list of produtos (index)"
+      summary: 'Get a list of produtos (index)'
       description: "\n\n _app/controllers/produtos_controller.ts_ - **index**"
       parameters: []
       tags:
-        - "PRODUTOS"
+        - 'PRODUTOS'
       responses:
         200:
-          description: "OK"
+          description: 'OK'
           content:
             application/json: {}
       security: []
   /api/produtos/{id}:
     get:
-      summary: "Get a single instance of produtos (show)"
+      summary: 'Get a single instance of produtos (show)'
       description: "\n\n _app/controllers/produtos_controller.ts_ - **show**"
       parameters:
-        - in: "path"
-          name: "id"
+        - in: 'path'
+          name: 'id'
           schema:
-            type: "string"
+            type: 'string'
           required: true
       tags:
-        - "PRODUTOS"
+        - 'PRODUTOS'
       responses:
         200:
-          description: "OK"
+          description: 'OK'
           content:
             application/json: {}
       security: []
   /api/categorias:
     get:
-      summary: "Get a list of categorias (index)"
+      summary: 'Get a list of categorias (index)'
       description: "\n\n _app/controllers/categorias_controller.ts_ - **index**"
       parameters: []
       tags:
-        - "CATEGORIAS"
+        - 'CATEGORIAS'
       responses:
         200:
-          description: "OK"
+          description: 'OK'
           content:
             application/json: {}
       security: []
   /api/categorias/{id}:
     get:
-      summary: "Get a single instance of categorias (show)"
+      summary: 'Get a single instance of categorias (show)'
       description: "\n\n _app/controllers/categorias_controller.ts_ - **show**"
       parameters:
-        - in: "path"
-          name: "id"
+        - in: 'path'
+          name: 'id'
           schema:
-            type: "string"
+            type: 'string'
           required: true
       tags:
-        - "CATEGORIAS"
+        - 'CATEGORIAS'
       responses:
         200:
-          description: "OK"
+          description: 'OK'
           content:
             application/json: {}
       security: []
   /api/usuarios:
     get:
-      summary: "Get a list of usuarios (index)"
+      summary: 'Get a list of usuarios (index)'
       description: "\n\n _app/controllers/usuarios_controller.ts_ - **index**"
       parameters: []
       tags:
-        - "USUARIOS"
+        - 'USUARIOS'
       responses:
         200:
-          description: "OK"
+          description: 'OK'
           content:
             application/json: {}
       security: []
     post:
-      summary: "Create (Frontend) usuarios (create)"
+      summary: 'Create (Frontend) usuarios (create)'
       description: "\n\n _app/controllers/usuarios_controller.ts_ - **create**"
       parameters: []
       tags:
-        - "USUARIOS"
+        - 'USUARIOS'
       responses:
         201:
-          description: "Created"
+          description: 'Created'
           content:
             application/json: {}
       security: []
@@ -373,36 +373,36 @@ paths:
           application/json: {}
   /api/usuarios/{id}:
     get:
-      summary: "Get a single instance of usuarios (show)"
+      summary: 'Get a single instance of usuarios (show)'
       description: "\n\n _app/controllers/usuarios_controller.ts_ - **show**"
       parameters:
-        - in: "path"
-          name: "id"
+        - in: 'path'
+          name: 'id'
           schema:
-            type: "string"
+            type: 'string'
           required: true
       tags:
-        - "USUARIOS"
+        - 'USUARIOS'
       responses:
         200:
-          description: "OK"
+          description: 'OK'
           content:
             application/json: {}
       security: []
     put:
-      summary: "Update usuarios (update)"
+      summary: 'Update usuarios (update)'
       description: "\n\n _app/controllers/usuarios_controller.ts_ - **update**"
       parameters:
-        - in: "path"
-          name: "id"
+        - in: 'path'
+          name: 'id'
           schema:
-            type: "string"
+            type: 'string'
           required: true
       tags:
-        - "USUARIOS"
+        - 'USUARIOS'
       responses:
         204:
-          description: "No Content"
+          description: 'No Content'
           content:
             application/json: {}
       security: []
@@ -411,19 +411,19 @@ paths:
           application/json: {}
   /api/usuarios/{id}/senha:
     patch:
-      summary: " (updateSenha)"
+      summary: ' (updateSenha)'
       description: "\n\n _app/controllers/usuarios_controller.ts_ - **updateSenha**"
       parameters:
-        - in: "path"
-          name: "id"
+        - in: 'path'
+          name: 'id'
           schema:
-            type: "string"
+            type: 'string'
           required: true
       tags:
-        - "USUARIOS"
+        - 'USUARIOS'
       responses:
         undefined:
-          description: "Unknown"
+          description: 'Unknown'
           content:
             application/json: {}
       security: []
@@ -432,26 +432,26 @@ paths:
           application/json: {}
   /api/pedidos:
     get:
-      summary: "Get a list of pedidos (index)"
+      summary: 'Get a list of pedidos (index)'
       description: "\n\n _app/controllers/pedidos_controller.ts_ - **index**"
       parameters: []
       tags:
-        - "PEDIDOS"
+        - 'PEDIDOS'
       responses:
         200:
-          description: "OK"
+          description: 'OK'
           content:
             application/json: {}
       security: []
     post:
-      summary: "Create (Frontend) pedidos (create)"
+      summary: 'Create (Frontend) pedidos (create)'
       description: "\n\n _app/controllers/pedidos_controller.ts_ - **create**"
       parameters: []
       tags:
-        - "PEDIDOS"
+        - 'PEDIDOS'
       responses:
         201:
-          description: "Created"
+          description: 'Created'
           content:
             application/json: {}
       security: []
@@ -460,36 +460,36 @@ paths:
           application/json: {}
   /api/pedidos/{id}:
     get:
-      summary: "Get a single instance of pedidos (show)"
+      summary: 'Get a single instance of pedidos (show)'
       description: "\n\n _app/controllers/pedidos_controller.ts_ - **show**"
       parameters:
-        - in: "path"
-          name: "id"
+        - in: 'path'
+          name: 'id'
           schema:
-            type: "string"
+            type: 'string'
           required: true
       tags:
-        - "PEDIDOS"
+        - 'PEDIDOS'
       responses:
         200:
-          description: "OK"
+          description: 'OK'
           content:
             application/json: {}
       security: []
     put:
-      summary: "Update pedidos (update)"
+      summary: 'Update pedidos (update)'
       description: "\n\n _app/controllers/pedidos_controller.ts_ - **update**"
       parameters:
-        - in: "path"
-          name: "id"
+        - in: 'path'
+          name: 'id'
           schema:
-            type: "string"
+            type: 'string'
           required: true
       tags:
-        - "PEDIDOS"
+        - 'PEDIDOS'
       responses:
         204:
-          description: "No Content"
+          description: 'No Content'
           content:
             application/json: {}
       security: []
@@ -498,14 +498,14 @@ paths:
           application/json: {}
   /api/auth/login:
     post:
-      summary: " (login)"
+      summary: ' (login)'
       description: "\n\n _app/controllers/auth_controller.ts_ - **login**"
       parameters: []
       tags:
-        - "AUTH"
+        - 'AUTH'
       responses:
         201:
-          description: "Created"
+          description: 'Created'
           content:
             application/json: {}
       security: []
@@ -514,25 +514,25 @@ paths:
           application/json: {}
   /api/auth/me:
     get:
-      summary: " (me)"
+      summary: ' (me)'
       description: "\n\n _app/controllers/auth_controller.ts_ - **me**"
       parameters: []
       tags:
-        - "AUTH"
+        - 'AUTH'
       responses:
         200:
-          description: "OK"
+          description: 'OK'
           content:
             application/json: {}
       security: []
 tags:
-  - name: "PRODUTOS"
-    description: "Everything related to PRODUTOS"
-  - name: "CATEGORIAS"
-    description: "Everything related to CATEGORIAS"
-  - name: "USUARIOS"
-    description: "Everything related to USUARIOS"
-  - name: "PEDIDOS"
-    description: "Everything related to PEDIDOS"
-  - name: "AUTH"
-    description: "Everything related to AUTH"
+  - name: 'PRODUTOS'
+    description: 'Everything related to PRODUTOS'
+  - name: 'CATEGORIAS'
+    description: 'Everything related to CATEGORIAS'
+  - name: 'USUARIOS'
+    description: 'Everything related to USUARIOS'
+  - name: 'PEDIDOS'
+    description: 'Everything related to PEDIDOS'
+  - name: 'AUTH'
+    description: 'Everything related to AUTH'

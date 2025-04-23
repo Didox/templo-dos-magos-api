@@ -1,6 +1,7 @@
 import router from '@adonisjs/core/services/router'
 import AutoSwagger from 'adonis-autoswagger'
 import swagger from '#config/swagger'
+import { middleware } from '#start/kernel'
 
 // Swagger routes
 router.get('/swagger', async () => {
@@ -39,6 +40,7 @@ router
     router.patch('/:id/senha', '#controllers/usuarios_controller.updateSenha')
   })
   .prefix('/api/usuarios')
+  .use(middleware.auth())
 
 // Pedidos
 router
@@ -49,6 +51,7 @@ router
     router.put('/:id', '#controllers/pedidos_controller.update')
   })
   .prefix('/api/pedidos')
+  .use(middleware.auth())
 
 // Auth
 router

@@ -363,9 +363,7 @@
         "summary": "Get a list of  (index)",
         "description": "\n\n _app/controllers/home_controller.ts_ - **index**",
         "parameters": [],
-        "tags": [
-          ""
-        ],
+        "tags": [""],
         "responses": {
           "200": {
             "description": "OK",
@@ -382,9 +380,7 @@
         "summary": "Get a list of produtos (index)",
         "description": "\n\n _app/controllers/produtos_controller.ts_ - **index**",
         "parameters": [],
-        "tags": [
-          "PRODUTOS"
-        ],
+        "tags": ["PRODUTOS"],
         "responses": {
           "200": {
             "description": "OK",
@@ -410,9 +406,7 @@
             "required": true
           }
         ],
-        "tags": [
-          "PRODUTOS"
-        ],
+        "tags": ["PRODUTOS"],
         "responses": {
           "200": {
             "description": "OK",
@@ -429,9 +423,7 @@
         "summary": "Get a list of categorias (index)",
         "description": "\n\n _app/controllers/categorias_controller.ts_ - **index**",
         "parameters": [],
-        "tags": [
-          "CATEGORIAS"
-        ],
+        "tags": ["CATEGORIAS"],
         "responses": {
           "200": {
             "description": "OK",
@@ -457,9 +449,7 @@
             "required": true
           }
         ],
-        "tags": [
-          "CATEGORIAS"
-        ],
+        "tags": ["CATEGORIAS"],
         "responses": {
           "200": {
             "description": "OK",
@@ -476,9 +466,7 @@
         "summary": "Get a list of usuarios (index)",
         "description": "\n\n _app/controllers/usuarios_controller.ts_ - **index**",
         "parameters": [],
-        "tags": [
-          "USUARIOS"
-        ],
+        "tags": ["USUARIOS"],
         "responses": {
           "200": {
             "description": "OK",
@@ -493,9 +481,7 @@
         "summary": "Create (Frontend) usuarios (create)",
         "description": "\n\n _app/controllers/usuarios_controller.ts_ - **create**",
         "parameters": [],
-        "tags": [
-          "USUARIOS"
-        ],
+        "tags": ["USUARIOS"],
         "responses": {
           "201": {
             "description": "Created",
@@ -526,9 +512,7 @@
             "required": true
           }
         ],
-        "tags": [
-          "USUARIOS"
-        ],
+        "tags": ["USUARIOS"],
         "responses": {
           "200": {
             "description": "OK",
@@ -552,9 +536,7 @@
             "required": true
           }
         ],
-        "tags": [
-          "USUARIOS"
-        ],
+        "tags": ["USUARIOS"],
         "responses": {
           "204": {
             "description": "No Content",
@@ -585,9 +567,7 @@
             "required": true
           }
         ],
-        "tags": [
-          "USUARIOS"
-        ],
+        "tags": ["USUARIOS"],
         "responses": {
           "undefined": {
             "description": "Unknown",
@@ -609,9 +589,7 @@
         "summary": "Get a list of pedidos (index)",
         "description": "\n\n _app/controllers/pedidos_controller.ts_ - **index**",
         "parameters": [],
-        "tags": [
-          "PEDIDOS"
-        ],
+        "tags": ["PEDIDOS"],
         "responses": {
           "200": {
             "description": "OK",
@@ -626,9 +604,7 @@
         "summary": "Create (Frontend) pedidos (create)",
         "description": "\n\n _app/controllers/pedidos_controller.ts_ - **create**",
         "parameters": [],
-        "tags": [
-          "PEDIDOS"
-        ],
+        "tags": ["PEDIDOS"],
         "responses": {
           "201": {
             "description": "Created",
@@ -659,9 +635,7 @@
             "required": true
           }
         ],
-        "tags": [
-          "PEDIDOS"
-        ],
+        "tags": ["PEDIDOS"],
         "responses": {
           "200": {
             "description": "OK",
@@ -685,9 +659,7 @@
             "required": true
           }
         ],
-        "tags": [
-          "PEDIDOS"
-        ],
+        "tags": ["PEDIDOS"],
         "responses": {
           "204": {
             "description": "No Content",
@@ -709,9 +681,7 @@
         "summary": " (login)",
         "description": "\n\n _app/controllers/auth_controller.ts_ - **login**",
         "parameters": [],
-        "tags": [
-          "AUTH"
-        ],
+        "tags": ["AUTH"],
         "responses": {
           "201": {
             "description": "Created",
@@ -733,9 +703,7 @@
         "summary": " (me)",
         "description": "\n\n _app/controllers/auth_controller.ts_ - **me**",
         "parameters": [],
-        "tags": [
-          "AUTH"
-        ],
+        "tags": ["AUTH"],
         "responses": {
           "200": {
             "description": "OK",
