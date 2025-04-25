@@ -4,8 +4,17 @@ import { PedidoService } from '#services/pedido_service'
 export default class PedidosController {
   constructor(protected pedidoService = new PedidoService()) {}
 
-  async index({ response }: HttpContext) {
-    const pedidos = await this.pedidoService.findAll()
+  async index({ response, request }: HttpContext) {
+    const usuarioId = request.qs().usuario_id
+
+    if (!usuarioId) {
+      // Se não foi fornecido usuario_id, retorna todos os pedidos
+      const pedidos = await this.pedidoService.findAll()
+      return response.json(pedidos)
+    }
+
+    // Se foi fornecido usuario_id, filtra por usuário
+    const pedidos = await this.pedidoService.findByUserId(usuarioId)
     return response.json(pedidos)
   }
 

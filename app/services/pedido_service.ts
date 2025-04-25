@@ -127,4 +127,16 @@ export class PedidoService {
 
     return statusFlow[currentStatus]?.includes(newStatus) || false
   }
+
+  async findByUserId(usuarioId: number) {
+    const pedidos = await Pedido.query()
+      .where('usuario_id', usuarioId)
+      .preload('usuario')
+      .preload('produtos', (query) => {
+        query.preload('produto')
+      })
+      .orderBy('created_at', 'desc')
+
+    return pedidos
+  }
 }
