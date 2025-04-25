@@ -30,11 +30,13 @@ export class PedidoService {
       data: dados,
     })
 
-    // Calcula o valor total do pedido
-    const valorTotal = dadosValidados.produtos.reduce(
-      (total: number, item: PedidoProdutoDTO) => total + item.preco_unitario * item.quantidade,
-      0
-    )
+    // Calcula o valor total do pedido e prepara os itens com subtotal
+    const produtosComSubtotal = dadosValidados.produtos.map((item) => ({
+      ...item,
+      subtotal: item.preco_unitario * item.quantidade,
+    }))
+
+    const valorTotal = produtosComSubtotal.reduce((total: number, item) => total + item.subtotal, 0)
 
     // Inicia a transação
     const trx = await db.transaction()
@@ -52,8 +54,8 @@ export class PedidoService {
         { client: trx }
       )
 
-      // Cria os itens do pedido
-      await pedido.related('produtos').createMany(dadosValidados.produtos, {
+      // Cria os itens do pedido com subtotal
+      await pedido.related('produtos').createMany(produtosComSubtotal, {
         client: trx,
       })
 
