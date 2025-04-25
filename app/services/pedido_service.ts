@@ -30,13 +30,29 @@ export class PedidoService {
       data: dados,
     })
 
+    // Validação adicional para garantir que existem produtos
+    if (!dadosValidados.produtos || dadosValidados.produtos.length === 0) {
+      throw new Error('O pedido deve conter pelo menos um produto')
+    }
+
     // Calcula o valor total do pedido e prepara os itens com subtotal
-    const produtosComSubtotal = dadosValidados.produtos.map((item) => ({
-      ...item,
-      subtotal: item.preco_unitario * item.quantidade,
-    }))
+    const produtosComSubtotal = dadosValidados.produtos.map((item) => {
+      if (!item.produto_id || !item.quantidade || !item.preco_unitario) {
+        throw new Error('Dados inválidos para os produtos do pedido')
+      }
+      
+      return {
+        ...item,
+        subtotal: item.preco_unitario * item.quantidade,
+      }
+    })
 
     const valorTotal = produtosComSubtotal.reduce((total: number, item) => total + item.subtotal, 0)
+
+    // Validação do valor total
+    if (valorTotal <= 0) {
+      throw new Error('O valor total do pedido deve ser maior que zero')
+    }
 
     // Inicia a transação
     const trx = await db.transaction()
