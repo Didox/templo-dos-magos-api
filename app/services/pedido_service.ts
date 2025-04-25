@@ -135,7 +135,7 @@ export class PedidoService {
       .preload('produtos', (query) => {
         query.preload('produto')
       })
-      .orderBy('created_at', 'desc')
+      .orderBy('criado_em', 'desc')
 
     return pedidos
   }
