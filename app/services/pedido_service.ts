@@ -40,7 +40,7 @@ export class PedidoService {
       if (!item.produto_id || !item.quantidade || !item.preco_unitario) {
         throw new Error('Dados inválidos para os produtos do pedido')
       }
-      
+
       return {
         ...item,
         subtotal: item.preco_unitario * item.quantidade,
