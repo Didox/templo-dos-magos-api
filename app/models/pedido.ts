@@ -34,6 +34,9 @@ export default class Pedido extends BaseModel {
   })
   declare usuario: BelongsTo<typeof Usuario>
 
-  @hasMany(() => PedidoProduto)
+  @hasMany(() => PedidoProduto, {
+    foreignKey: 'pedido_id',
+    localKey: 'id',
+  })
   declare produtos: HasMany<typeof PedidoProduto>
 }
