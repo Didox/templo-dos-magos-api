@@ -1,5 +1,5 @@
 import vine from '@vinejs/vine'
-import { PedidoDTO, UpdatePedidoDTO, PedidoProdutoDTO } from '#dtos/pedido_dto.js'
+import { PedidoDTO, UpdatePedidoDTO } from '#dtos/pedido_dto.js'
 import Pedido from '#models/pedido'
 import db from '@adonisjs/lucid/services/db'
 

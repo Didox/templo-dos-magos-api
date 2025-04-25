@@ -8,6 +8,13 @@ else
     mensagem="$1"
 fi
 
+# Executa o build antes do push
+echo "Executando build..."
+if ! npm run build; then
+    echo "Build falhou! Abortando push."
+    exit 1
+fi
+
 # Executa os comandos git
 git add .
 git commit -am "$mensagem"
