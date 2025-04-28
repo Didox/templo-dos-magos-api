@@ -93,8 +93,7 @@ export default class UsuariosController {
       return response.json(usuarioAtualizado)
     } catch (error) {
       return response.status(400).json({
-        message: 'Erro ao atualizar senha',
-        error: error.message,
+        message: error.message,
       })
     }
   }
