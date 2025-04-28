@@ -34,6 +34,8 @@ const updateUsuarioSchema = vine.object({
 
 const updateSenhaSchema = vine.object({
   senha: vine.string(),
+  senha_atual: vine.string(),
+  senha_confirmacao: vine.string(),
 })
 
 export class UsuarioService {
@@ -103,6 +105,17 @@ export class UsuarioService {
       schema: updateSenhaSchema,
       data: dados,
     })
+
+    // Validação das senhas
+    if (dados.senha !== dados.senha_confirmacao) {
+      throw new Error('A senha e a confirmação de senha não coincidem')
+    }
+
+    // Verificar se a senha atual está correta
+    const senhaCorreta = await hash.verify(dados.senha_atual, usuario.senha)
+    if (!senhaCorreta) {
+      throw new Error('A senha atual está incorreta')
+    }
 
     // Criptografa e atualiza a senha
     usuario.senha = await hash.make(dadosValidados.senha)

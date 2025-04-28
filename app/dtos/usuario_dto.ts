@@ -28,4 +28,6 @@ export interface UpdateUsuarioDTO {
 
 export interface UpdateSenhaDTO {
   senha: string
+  senha_atual: string
+  senha_confirmacao: string
 }

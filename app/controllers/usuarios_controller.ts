@@ -83,9 +83,14 @@ export default class UsuariosController {
 
   async updateSenha({ params, request, response }: HttpContext) {
     try {
-      const { senha } = request.only(['senha'])
-      const usuario = await this.usuarioService.updateSenha(params.id, { senha })
-      return response.json(usuario)
+      const payload = request.only(['senha', 'senha_atual', 'senha_confirmacao'])
+
+      const usuarioAtualizado = await this.usuarioService.updateSenha(params.id, {
+        senha: payload.senha,
+        senha_atual: payload.senha_atual,
+        senha_confirmacao: payload.senha_confirmacao,
+      })
+      return response.json(usuarioAtualizado)
     } catch (error) {
       return response.status(404).json({
         message: 'Usuário não encontrado',
