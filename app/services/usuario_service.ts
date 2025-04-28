@@ -112,7 +112,7 @@ export class UsuarioService {
     }
 
     // Verificar se a senha atual está correta
-    const senhaCorreta = await hash.verify(dados.senha_atual, usuario.senha)
+    const senhaCorreta = await hash.verify(usuario.senha, dados.senha_atual)
     if (!senhaCorreta) {
       throw new Error('A senha atual está incorreta')
     }
