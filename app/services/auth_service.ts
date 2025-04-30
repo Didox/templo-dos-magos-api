@@ -32,6 +32,11 @@ export class AuthService {
     return {
       type: 'Bearer',
       token: token.value,
+      usuario: {
+        id: usuario.id,
+        nome: usuario.nome,
+        email: usuario.email,
+      },
       expires_at: token.expiresAt,
     }
   }

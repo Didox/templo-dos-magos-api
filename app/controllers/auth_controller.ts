@@ -7,8 +7,12 @@ export default class AuthController {
   constructor(protected authService: AuthService) {}
 
   async login({ request, response }: HttpContext) {
-    const { email, senha } = request.body()
-    const result = await this.authService.login({ email, senha })
-    return response.json(result)
+    try {
+      const { email, senha } = request.body()
+      const result = await this.authService.login({ email, senha })
+      return response.json(result)
+    } catch (error) {
+      return response.badRequest({ error: error.message })
+    }
   }
 }

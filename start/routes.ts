@@ -34,6 +34,7 @@ router
 router
   .group(() => {
     router.get('/', '#controllers/usuarios_controller.index').as('usuarios.index')
+    router.get('/perfil', '#controllers/usuarios_controller.perfil').as('usuarios.perfil')
     router.get('/:id', '#controllers/usuarios_controller.show')
     router.post('/', '#controllers/usuarios_controller.create')
     router.put('/:id', '#controllers/usuarios_controller.update')

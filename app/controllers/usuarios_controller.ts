@@ -1,6 +1,7 @@
 import { HttpContext } from '@adonisjs/core/http'
 import Usuario from '#models/usuario'
 import { UsuarioService } from '#services/usuario_service'
+import { TokenService } from '#services/token_service'
 
 export default class UsuariosController {
   constructor(protected usuarioService = new UsuarioService()) {}
@@ -18,10 +19,39 @@ export default class UsuariosController {
     )
   }
 
+  async perfil({ request, response }: HttpContext) {
+    try {
+      const token = request.header('Authorization')?.split(' ')[1]
+      if (!token) {
+        return response.status(401).json({ message: 'Token não fornecido' })
+      }
+
+      const { sub: id } = new TokenService().verifyToken(token)
+      const usuario = await Usuario.findOrFail(id)
+      return response.json(
+        usuario.serialize({
+          fields: {
+            omit: ['senha'],
+          },
+        })
+      )
+    } catch (error) {
+      return response.status(404).json({
+        message: 'Usuário não encontrado',
+      })
+    }
+  }
+
   async show({ params, response }: HttpContext) {
     try {
       const usuario = await Usuario.findOrFail(params.id)
-      return response.json(usuario)
+      return response.json(
+        usuario.serialize({
+          fields: {
+            omit: ['senha'],
+          },
+        })
+      )
     } catch (error) {
       return response.status(404).json({
         message: 'Usuário não encontrado',
